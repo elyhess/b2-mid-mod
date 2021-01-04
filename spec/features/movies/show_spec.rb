@@ -41,5 +41,25 @@ describe "As a visitor" do
         expect(@actor_1.name).to appear_before(@actor_2.name)
       end
     end
+
+    it 'I can add actors who to a movie via a form' do
+      @actor_5 = Actor.create!(name: "x", age: 56)
+      @actor_6 = Actor.create!(name: "some_name", age: 11)
+      @actor_7 = Actor.create!(name: "another_name", age: 34)
+
+      visit movie_path(@the_lighthouse)
+
+      within("#add-actor") do 
+        expect(page).to have_content("Add Actor To This Movie")
+        select('x', :from => :actor_name)
+        click_on 'Add'
+      end
+      save_and_open_page
+      within("#actors") do
+        expect(page).to have_content(@actor_5.name)
+        expect(page).to_not have_content(@actor_6.name)
+        expect(page).to_not have_content(@actor_7.name)
+      end
+    end
   end
 end
