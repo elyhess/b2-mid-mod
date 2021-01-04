@@ -9,4 +9,9 @@ class Actor < ApplicationRecord
   def self.sort_by_youngest
     order(:age)
   end
+
+  def self.not_in_movies
+    left_joins(:movie_actors)
+    .where('movie_actors.movie_id IS NULL')
+  end
 end
