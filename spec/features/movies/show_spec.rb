@@ -54,7 +54,7 @@ describe "As a visitor" do
         select('x', :from => :actor_name)
         click_on 'Add'
       end
-      save_and_open_page
+
       within("#actors") do
         expect(page).to have_content(@actor_5.name)
         expect(page).to_not have_content(@actor_6.name)
