@@ -4,7 +4,7 @@
 
 <section id="actors">
   <h4>Actors:</h4>
-  <h4>Average age: <%= @movie.actors.average_age.round(2) %></h4>
+  <h4>Average age: <%= @actors_avg_age %></h4>
   <% @movie.actors.sort_by_youngest.each do |actor| %>
     <p><%= actor.name %> - Age: <%= actor.age %></p>
   <% end %>
