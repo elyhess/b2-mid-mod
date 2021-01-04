@@ -42,6 +42,10 @@ RSpec.describe Actor, type: :model do
     it '::average_age' do
       expect(Actor.average_age).to eq(29)
     end
+
+    it '::sort_by_youngest' do
+      expect(Actor.sort_by_youngest).to eq([@actor_3, @actor_1, @actor_4, @actor_2])
+    end
   end
   
 end
