@@ -30,7 +30,7 @@ describe "As a visitor" do
     it "I see each studio with the movies for each studio underneath" do
       visit studios_path
       expect(page).to have_content("Studios")
-      save_and_open_page
+
       within("#studio-#{@a24.id}") do
         expect(page).to have_content("#{@a24.name} Movies")
         expect(page).to have_content(@midsommar.title) 

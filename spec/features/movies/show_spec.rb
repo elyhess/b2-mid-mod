@@ -1,19 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe Actor, type: :model do
-  describe 'validations' do
-
-  end
-
-  describe 'relationships' do
-    it {should have_many :movie_actors}
-    it {should have_many :movies}
-  end
-
-  describe 'instance methods' do
-  end
-
-  describe 'class methods' do
+describe "As a visitor" do
+  describe "when i visit the movie show page" do
     before :each do
       @a24 = Studio.create!(name: "A24", location: "New York")
 
@@ -39,13 +27,19 @@ RSpec.describe Actor, type: :model do
       MovieActor.create!(movie: @the_lighthouse, actor: @actor_4)
     end
 
-    it '::average_age' do
-      expect(Actor.average_age).to eq(29)
-    end
+    it "I see the movies attributes, as well as the actors from youngest to oldest. I also see the average age" do
+      visit movie_path(@midsommar)
 
-    it '::sort_by_youngest' do
-      expect(Actor.sort_by_youngest).to eq([@actor_3, @actor_1, @actor_4, @actor_2])
+      expect(page).to have_content(@midsommar.title)
+      expect(page).to have_content(@midsommar.year)
+      expect(page).to have_content(@midsommar.genre)
+
+      within("#actors") do
+        expect(page).to have_content("Average age: 27.67") 
+        expect(page).to have_content("Actors:")
+        expect(@actor_3.name).to appear_before(@actor_1.name)
+        expect(@actor_1.name).to appear_before(@actor_2.name)
+      end
     end
   end
-  
 end
