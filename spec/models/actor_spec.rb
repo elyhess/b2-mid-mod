@@ -1,5 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Actor, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+
+  end
+
+  describe 'relationships' do
+    it {should have_many :movie_actors}
+    it {should have_many :movies}
+  end
+
+  describe 'instance methods' do
+  end
+
+  describe 'class methods' do 
+  end
+  
 end
