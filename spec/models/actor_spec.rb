@@ -29,7 +29,7 @@ RSpec.describe Actor, type: :model do
       @actor_2 = Actor.create!(name: "Bob", age: 43)
       @actor_3 = Actor.create!(name: "Carl", age: 16)
       @actor_4 = Actor.create!(name: "Deandra", age: 33)
-
+      
       MovieActor.create!(movie: @midsommar, actor: @actor_1)
       MovieActor.create!(movie: @midsommar, actor: @actor_2)
       MovieActor.create!(movie: @midsommar, actor: @actor_3)
@@ -45,6 +45,11 @@ RSpec.describe Actor, type: :model do
 
     it '::sort_by_youngest' do
       expect(Actor.sort_by_youngest).to eq([@actor_3, @actor_1, @actor_4, @actor_2])
+    end
+
+    it '::not_in_movies' do
+      @actor_5 = Actor.create!(name: "Leo", age: 12)
+      expect(Actor.not_in_movies).to eq([@actor_5])
     end
   end
   
