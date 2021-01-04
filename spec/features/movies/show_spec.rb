@@ -29,16 +29,16 @@ describe "As a visitor" do
 
     it "I see the movies attributes, as well as the actors from youngest to oldest. I also see the average age" do
       visit movie_path(@midsommar)
-      save_and_open_page
+
       expect(page).to have_content(@midsommar.title)
       expect(page).to have_content(@midsommar.year)
       expect(page).to have_content(@midsommar.genre)
 
       within("#actors") do
-        expect(page).to have_content("Average age: #{Actor.average_age}") 
+        expect(page).to have_content("Average age: 27.67") 
         expect(page).to have_content("Actors:")
-        expect(@actor_3).to appear_before(@actor_1)
-        expect(@actor_1).to appear_before(@actor_2)
+        expect(@actor_3.name).to appear_before(@actor_1.name)
+        expect(@actor_1.name).to appear_before(@actor_2.name)
       end
     end
   end
