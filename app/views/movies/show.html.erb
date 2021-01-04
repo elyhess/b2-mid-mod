@@ -9,3 +9,16 @@
     <p><%= actor.name %> - Age: <%= actor.age %></p>
   <% end %>
 </section>
+
+<section id="add-actor">
+  <h1>Add Actor To This Movie</h1> 
+  <%= form_with(url: movie_actors_path(@movie), local: true) do |f| %>
+    <p>
+      <%= f.label :name, "Actor Name" %><br/>
+      <%= f.select(:actor_name, options_for_select(@actors.map { |u| [u.name]}) ) %>
+    </p>
+    <p>
+      <%= f.submit 'Add' %>
+    </p>
+  <% end %>
+</section>
