@@ -1,5 +1,7 @@
 # B2 Assessments
 
+https://gist.github.com/BrianZanti/094383c59f86d1eaa3069a0a3b680272
+
 Base repository for B2 assessments and diagnostics.
 
 This repository requires and has been tested on Ruby v2.5.3 and is based on Rails 5.2.4.3.
